@@ -10,8 +10,4 @@ import { FormsModule } from '@angular/forms';
 
 export class AppComponent {
   title = 'Challenge - Convem';
-
-  submitResponse() {
-    alert('clicou')
-  }
 }
