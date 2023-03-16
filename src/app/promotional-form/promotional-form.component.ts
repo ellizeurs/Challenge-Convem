@@ -13,23 +13,27 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class PromotionalFormComponent {
   constructor(private http: HttpClient) { }
-  userResponse = '';
-  buttonText = 'Enviar';
-  send = false;
+  userResponse : string = ''; // Start user response
+  buttonText : string = 'Enviar'; // Start button text
+  send : boolean = false; // Submitted form
 
   submitResponse() {
-    if (this.userResponse == ''){
+    if (this.userResponse == '') { //Check empty field
       alert('Insira sua resposta');
       return;
     }
-    if (this.send) return;
+    if (this.send) return; //Check if the form was submitted 
     this.buttonText = 'Enviando...';
-    this.send = true;
+    this.send = true; // Block button and field read only
+    // Send server request
     this.http.get('https://641077cd7b24bb91f21e25e1.mockapi.io/promotional_response/' + this.userResponse.toUpperCase()).subscribe(
-      data => {
-        this.buttonText = 'Você está mais próximo de se juntar ao time!';
+      data => { // Sucess request (/:id == SIM || /:id is empty)
+        if (Array.isArray(data)) // Empty field (second check)
+          this.buttonText = 'Erro';
+        else // Sucess
+          this.buttonText = 'Você está mais próximo de se juntar ao time!';
       },
-      error => {
+      error => { //Error request (/:id != SIM)
         this.buttonText = 'Erro';
       }
     );
