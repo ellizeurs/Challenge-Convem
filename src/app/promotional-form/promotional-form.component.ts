@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class PromotionalFormComponent {
   constructor(private http: HttpClient) { }
+  userResponse = '';
   buttonText = 'Enviar';
   send = false;
 
@@ -33,6 +34,4 @@ export class PromotionalFormComponent {
       }
     );
   }
-
-  userResponse = '';
 }
