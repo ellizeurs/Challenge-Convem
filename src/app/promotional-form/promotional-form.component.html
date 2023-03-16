@@ -1,5 +1,5 @@
-<p>Você quer se juntar ao time da Convem?</p>
-<select [(ngModel)]="selectedValue" name="sel2">
-    <option [value]="i.value" *ngFor="let i of options">{{i.name}}</option>
-</select>
-<button (click)="submitResponse()" [disabled]="send">{{buttonText}}</button>
+<form (ngSubmit)="submitResponse()">
+    <label for="userResponse">Você quer se juntar ao time da Convem?</label>
+    <input type="text" name="userResponse" [(ngModel)]="userResponse" autocomplete="off" [readOnly]="send" required>
+    <button [disabled]="send">{{buttonText}}</button>
+</form>

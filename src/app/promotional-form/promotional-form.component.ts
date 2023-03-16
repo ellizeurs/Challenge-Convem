@@ -17,24 +17,22 @@ export class PromotionalFormComponent {
   send = false;
 
   submitResponse() {
-    if (this.selectedValue == '') return;
+    if (this.userResponse == ''){
+      alert('Insira sua resposta');
+      return;
+    }
+    if (this.send) return;
     this.buttonText = 'Enviando...';
     this.send = true;
-    this.http.get('https://641077cd7b24bb91f21e25e1.mockapi.io/promotional_response/' + this.selectedValue.toUpperCase()).subscribe(
+    this.http.get('https://641077cd7b24bb91f21e25e1.mockapi.io/promotional_response/' + this.userResponse.toUpperCase()).subscribe(
       data => {
-        this.buttonText = 'Sucesso';
+        this.buttonText = 'Você está mais próximo de se juntar ao time!';
       },
       error => {
         this.buttonText = 'Erro';
       }
     );
   }
-  options = [
-    { name: 'Selecione', value: '' },
-    { name: 'Sim', value: 'sim' },
-    { name: 'Não', value: 'nao' },
-    { name: 'Talvez', value: 'talvez' }
-  ];
 
-  selectedValue = '';
+  userResponse = '';
 }
