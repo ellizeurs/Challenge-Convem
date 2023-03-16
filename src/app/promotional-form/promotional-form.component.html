@@ -1,5 +1,5 @@
 <form (ngSubmit)="submitResponse()">
     <label for="userResponse">Você quer se juntar ao time da Convem?</label>
-    <input type="text" name="userResponse" [(ngModel)]="userResponse" autocomplete="off" [readOnly]="send" required>
+    <input type="text" name="userResponse" [(ngModel)]="userResponse" autocomplete="off" (keydown)="resetForm()" required>
     <button [disabled]="send">{{buttonText}}</button>
 </form>

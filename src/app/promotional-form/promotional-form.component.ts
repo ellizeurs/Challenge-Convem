@@ -38,4 +38,9 @@ export class PromotionalFormComponent {
       }
     );
   }
+
+  resetForm(){ // On keydown event in userResponse field restart the form
+    this.buttonText = 'Enviar';
+    this.send = false;
+  }
 }
